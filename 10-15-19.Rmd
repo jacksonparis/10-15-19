@@ -1,0 +1,24 @@
+---
+title: "10-15-19"
+author: "Jackson Kehoe"
+date: "10/15/2019"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+
+library(tidyverse)
+library(janitor)
+```
+
+```{r}
+n <- 1000000
+x <- tibble(replicate = 1:n) %>% 
+mutate(which_bowl = sample(c("Bowl 1", "Bowl 2"), size = n, replace = TRUE)) %>%
+mutate(cookie = ifelse(which_bowl == "Bowl 1", 
+        sample(c("Vanilla", "Chocolate"), size = n, replace = TRUE, prob = (c(.75, .25))), 
+       sample(c("Vanilla", "Chocolate"), size = n, replace = TRUE, prob = (c(.5, .5)))))
+
+```
+
